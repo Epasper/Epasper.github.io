@@ -1,6 +1,6 @@
 // https://observablehq.com/@roblallier/clustered-bubbles@529
 export default function define(runtime, observer) {
-  const runtime = new Runtime();
+  // const runtime = new Runtime();
   const main = runtime.module(define);
   main.value("foo").then(value => console.log(value));
 
