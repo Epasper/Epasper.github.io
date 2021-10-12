@@ -18,6 +18,7 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
+  console.log('%%% pack(): ', pack());
   console.log('%%% nodes: ', nodes);
   const links = populateLinks();
   console.log('%%% links: ', links);
@@ -192,7 +193,7 @@ function forceCollide() {
   main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,l,n){return(
 () => {
   links.length = 0;
-  for(let i=0; i < l; i++) {
+  for(let i=0; i < 2; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
     while(source === target){
