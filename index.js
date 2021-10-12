@@ -71,7 +71,7 @@ html`<button>Replay`
       .attr("rx", d => d.value)
       .attr("fill", d => color(d.data.group))
 
-  const node = svg.append("g")
+  const text = svg.append("g")
   .selectAll("text")
   .data(nodes)
   .join("text")
