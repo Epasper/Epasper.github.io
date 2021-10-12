@@ -198,7 +198,7 @@ function forceCollide() {
 () => {
   links.length = 0;
   //l is the number of links
-  n=5;
+  n=50;
   for(let i=0; i < l; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
