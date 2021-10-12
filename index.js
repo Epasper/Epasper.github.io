@@ -70,6 +70,17 @@ html`<button>Replay`
       .attr("height", d => (d.value +1)  * MAGNIFIER)
       .attr("rx", d => d.value)
       .attr("fill", d => color(d.data.group))
+
+  const node = svg.append("g")
+  .selectAll("text")
+  .data(nodes)
+  .join("text")
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    .attr("width", d=> (d.value +1) * MAGNIFIER)
+    .attr("height", d => (d.value +1)  * MAGNIFIER)
+    .attr("font-family", Verdana)
+    .attr("font-size", 20)
   
   node.transition()
       .delay((d, i) => Math.random() * 500)
@@ -181,8 +192,8 @@ function forceCollide() {
     d3.group(
       Array.from({length: n}, (_, i) => ({
         id: i,
-        group: Math.random() * m | 0,
-        value: -Math.log(Math.random())
+        group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
+        value: -Math.log(Math.random()) //ILS NODE SIZE
       })),
       d => d.group
     ),
@@ -198,7 +209,6 @@ function forceCollide() {
 () => {
   links.length = 0;
   //l is the number of links
-  n=50;
   for(let i=0; i < l; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
@@ -207,8 +217,8 @@ function forceCollide() {
     }
     links.push({
       id: `${source}.${target}`,
-      source,
-      target
+      source, //NODE ID STARTING THE LINK
+      target //NODE ID FINISHING THE LINK
     })  
   }
   return links
