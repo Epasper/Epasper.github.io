@@ -1,0 +1,14 @@
+{
+  "name": "@roblallier/clustered-bubbles",
+  "main": "d6e8d35a0ee38574@529.js",
+  "version": "529.0.0",
+  "homepage": "https://observablehq.com/@roblallier/clustered-bubbles",
+  "author": {
+    "name": "RobLllr",
+    "url": "https://observablehq.com/@roblallier"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
