@@ -193,8 +193,9 @@ function forceCollide() {
   main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,l,n){return(
 () => {
   links.length = 0;
+  //l is the number of links
   n=5;
-  for(let i=0; i < 2; i++) {
+  for(let i=0; i < l; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
     while(source === target){
