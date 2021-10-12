@@ -79,7 +79,7 @@ html`<button>Replay`
     .attr("y", d => d.y)
     .attr("width", d=> (d.value +1) * MAGNIFIER)
     .attr("height", d => (d.value +1)  * MAGNIFIER)
-    .attr("font-family", Verdana)
+    .attr("font-family", "Verdana")
     .attr("font-size", 20)
   
   node.transition()
