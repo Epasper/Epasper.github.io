@@ -18,13 +18,15 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
-  console.log('%%% d.data: ', d.data);
   console.log('%%% pack(): ', pack());
   console.log('%%% pack().children: ', pack().children);
   console.log('%%% nodes: ', nodes);
   const links = populateLinks();
   console.log('%%% links: ', links);
-  let zones = d3.rollup(nodes, zone, d => d.data.group);
+  let zones = d3.rollup(nodes, zone, d => {
+    console.log('%%% d.data: ', d.data);
+    d.data.group;
+  });
   console.log('%%% zones: ', zones);
 
   const simulation = d3.forceSimulation(nodes)
