@@ -17,8 +17,11 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
+  console.log('%%% nodes: ', nodes);
   const links = populateLinks();
+  console.log('%%% links: ', links);
   let zones = d3.rollup(nodes, zone, d => d.data.group);
+  console.log('%%% zones: ', zones);
 
   const simulation = d3.forceSimulation(nodes)
       .force("x", d3.forceX(width / 2).strength(0.01))
@@ -47,9 +50,6 @@ html`<button>Replay`
     .data(links)
     .join("path")
       .attr("d", d => `M ${d.source.x + (d.source.value +1) * (MAGNIFIER/2)} ${d.source.y + (d.source.value +1) * (MAGNIFIER/2)} H ${d.target.x + (d.target.value +1) * (MAGNIFIER/2)} V ${d.target.y + (d.target.value +1) * (MAGNIFIER/2)}`)
-      /* .attr("y1", d => d.source.y + (d.source.value +1) * (MAGNIFIER/2))
-      .attr("x2", d => d.target.x + (d.target.value +1) * (MAGNIFIER/2))
-      .attr("y2", d => d.target.y + (d.target.value +1) * (MAGNIFIER/2)) */
       .attr("stroke", '#999')
       .attr("fill", 'none')
       .attr("stroke-width", 2);
@@ -160,6 +160,7 @@ function forceCollide() {
   return force;
 }
 )});
+
   main.variable(observer("pack")).define("pack", ["d3","width","height","data"], function(d3,width,height,data){return(
 () => d3.pack()
     .size([width, height])
@@ -167,6 +168,7 @@ function forceCollide() {
   (d3.hierarchy(data)
     .sum(d => d.value))
 )});
+
   main.variable(observer("data")).define("data", ["d3","n","m"], function(d3,n,m){return(
 {
   children: Array.from(
@@ -182,6 +184,7 @@ function forceCollide() {
   )
 }
 )});
+
   main.variable(observer("links")).define("links", function(){return(
 []
 )});
@@ -203,6 +206,7 @@ function forceCollide() {
   return links
 }
 )});
+
   main.variable(observer("zone")).define("zone", ["d3","MAGNIFIER"], function(d3,MAGNIFIER){return(
 (nodes) => {
   // const padding = 2;
