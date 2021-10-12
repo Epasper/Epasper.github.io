@@ -193,7 +193,7 @@ function forceCollide() {
       Array.from({length: n}, (_, i) => ({
         id: i,
         group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
-        value: -Math.log(Math.random()) //ILS NODE SIZE
+        value: 25 //ILS NODE SIZE
       })),
       d => d.group
     ),
@@ -208,7 +208,7 @@ function forceCollide() {
   main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,l,n){return(
 () => {
   links.length = 0;
-  //l is the number of links
+  //ILS l is the number of links
   for(let i=0; i < l; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
@@ -217,8 +217,8 @@ function forceCollide() {
     }
     links.push({
       id: `${source}.${target}`,
-      source, //NODE ID STARTING THE LINK
-      target //NODE ID FINISHING THE LINK
+      source, //ils NODE ID STARTING THE LINK
+      target //ils NODE ID FINISHING THE LINK
     })  
   }
   return links
