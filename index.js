@@ -1,6 +1,10 @@
 // https://observablehq.com/@roblallier/clustered-bubbles@529
 export default function define(runtime, observer) {
-  const main = runtime.module();
+  const runtime = new Runtime();
+  const main = runtime.module(define);
+  main.value("foo").then(value => console.log(value));
+
+  // const main = runtime.module();
   main.variable(observer()).define(["md"], function(md){return(
 md`# Entity-Relation Diagram using Force Layout
 
