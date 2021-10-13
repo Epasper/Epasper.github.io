@@ -10,5 +10,7 @@ import {Runtime, Library, Inspector} from "./runtime.js";
 
 const runtime = new Runtime();
 const main = runtime.module(define, Inspector.into(document.body));
+main.variable().define("l", 5);
+
 
 </script>
