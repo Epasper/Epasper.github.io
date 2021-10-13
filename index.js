@@ -200,12 +200,12 @@ function forceCollide() {
   main.variable(observer("links")).define("links", function(){return(
 []
 )});
-  main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,l,n){return(
+  main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,numberOfLinks,n){return(
 () => {
   links.length = 0;
   console.log('numberOfLinks', numberOfLinks);
   //ILS l is the number of links
-  for(let i=0; i < l; i++) {
+  for(let i=0; i < numberOfLinks; i++) {
     const source = Math.floor(Math.random() * n);
     let target = Math.floor(Math.random() * n);
     while(source === target){
