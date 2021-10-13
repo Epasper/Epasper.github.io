@@ -181,14 +181,14 @@ function forceCollide() {
     .sum(d => d.value))
 )});
 
-  main.variable(observer("data")).define("data", ["d3","n","m"], function(d3,n,m){return(
+  main.variable(observer("data")).define("data", ["d3","n","m"], function(d3,n,m,nodeSize){return(
 {
   children: Array.from(
     d3.group(
       Array.from({length: n}, (_, i) => ({
         id: i,
         group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
-        value: 10 //ILS NODE SIZE
+        value: nodeSize //ILS NODE SIZE
       })),
       d => d.group
     ),
