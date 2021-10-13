@@ -18,15 +18,10 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
-  console.log('%%% pack(): ', pack());
-  console.log('%%% pack().children: ', pack().children);
   console.log('%%% nodes: ', nodes);
   const links = populateLinks();
   console.log('%%% links: ', links);
-  let zones = d3.rollup(nodes, zone, d => {
-    console.log('%%% d.data: ', d.data);
-    d.data.group;
-  });
+  let zones = d3.rollup(nodes, zone, d => d.data.group);
   console.log('%%% zones: ', zones);
 
   const simulation = d3.forceSimulation(nodes)
@@ -193,7 +188,7 @@ function forceCollide() {
       Array.from({length: n}, (_, i) => ({
         id: i,
         group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
-        value: 25 //ILS NODE SIZE
+        value: 10 //ILS NODE SIZE
       })),
       d => d.group
     ),
