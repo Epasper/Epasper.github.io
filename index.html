@@ -9,6 +9,22 @@ import define from "./index.js";
 import {Runtime, Library, Inspector} from "./runtime.js";
 
 const runtime = new Runtime();
-const main = runtime.module(define, Inspector.into(document.body));
+const main = runtime.module(define, name => {
+    const node = document.getElementById(name);
+    return {
+      pending() {
+        node.classList.add("running")
+      },
+      fulfilled(value) {
+        node.classList.remove("running");
+        node.innerText = value;
+      },
+      rejected(error) {
+        node.classList.remove("running");
+        node.classList.add("error");
+        node.textContent = error.message;
+      }
+    };
+  });
 
 </script>
