@@ -96,14 +96,6 @@ html`<button>Replay`
         return t => d.r = i(t);
       });
 
-  text.transition()
-      .delay((d, i) => Math.random() * 500)
-      .duration(750)
-      .attrTween("r", d => {
-        const i = d3.interpolate(0, d.r);
-        return t => d.r = i(t);
-      });
-
   simulation.on("tick", () => {
     zones = d3.rollup(nodes, zone, d => d.data.group);
     area
