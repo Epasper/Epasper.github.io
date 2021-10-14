@@ -73,6 +73,9 @@ html`<button>Replay`
       .attr("height", d => (d.value +1)  * MAGNIFIER)
       .attr("rx", d => d.value)
       .attr("fill", d => color(d.data.group))
+      .on("click", function(){
+        console.log("CLICKED!")
+      }); 
 
   const text = node.append("g")
   .selectAll("text")
