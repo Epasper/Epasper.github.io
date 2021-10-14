@@ -188,7 +188,7 @@ function forceCollide() {
       Array.from({length: n}, (_, i) => ({
         id: i,
         group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
-        value: 5 //ILS NODE SIZE
+        value: 3 //ILS NODE SIZE
       })),
       d => d.group
     ),
@@ -205,9 +205,9 @@ function forceCollide() {
   links.length = 0;
   console.log('numberOfLinks', numberOfLinks);
   //ILS l is the number of links
-  for(let i=0; i < numberOfLinks; i++) {
-    const source = Math.floor(Math.random() * n);
-    let target = Math.floor(Math.random() * n);
+  for(let i = 0; i < numberOfLinks - 1; i++) {
+    const source = i;
+    let target = i + 1;
     while(source === target){
       target = Math.floor(Math.random() * n);
     }
