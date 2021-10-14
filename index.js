@@ -188,7 +188,7 @@ function forceCollide() {
       Array.from({length: n}, (_, i) => ({
         id: i,
         group: Math.random() * m | 0, //ILS GROUP THE NODE INTO COLORED GROUPS
-        value: nodeSize //ILS NODE SIZE
+        value: 5 //ILS NODE SIZE
       })),
       d => d.group
     ),
