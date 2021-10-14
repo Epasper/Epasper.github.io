@@ -80,8 +80,8 @@ html`<button>Replay`
   .join("text")
     .attr("x", d => d.x)
     .attr("y", d => d.y)
-    .attr("width", d=> (d.value +1) * MAGNIFIER)
-    .attr("height", d => (d.value +1)  * MAGNIFIER)
+    .attr("width", d=> (d.value +1))
+    .attr("height", d => (d.value +1))
     .attr("font-family", "Verdana")
     .attr("font-size", 20)
     .text(function(d) {
