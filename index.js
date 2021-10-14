@@ -68,7 +68,7 @@ html`<button>Replay`
 
   const text = svg.append("g")
   .selectAll("text")
-  .data(nodes)
+  .data('TEST NAME AND SURNAME')
   .join("text")
     .attr("x", d => d.x)
     .attr("y", d => d.y)
