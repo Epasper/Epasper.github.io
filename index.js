@@ -1,7 +1,7 @@
 // https://observablehq.com/@roblallier/clustered-bubbles@529
 export default function define(runtime, observer) {
 
-  let cities = [
+  let dummyData = [
     { name: 'London', population: 8674000},
     { name: 'New York', population: 8406000},
     { name: 'Sydney', population: 4293000},
@@ -76,7 +76,7 @@ html`<button>Replay`
 
   const text = svg.append("g")
   .selectAll("text")
-  .data(cities)
+  .data(nodes)
   .join("text")
     .attr("x", d => d.x)
     .attr("y", d => d.y)
@@ -85,7 +85,7 @@ html`<button>Replay`
     .attr("font-family", "Verdana")
     .attr("font-size", 20)
     .text(function(d) {
-      return d.name;
+      return 'TEST TEXT';
     })
   
   node.transition()
