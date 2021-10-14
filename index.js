@@ -1,6 +1,14 @@
 // https://observablehq.com/@roblallier/clustered-bubbles@529
 export default function define(runtime, observer) {
 
+  let cities = [
+    { name: 'London', population: 8674000},
+    { name: 'New York', population: 8406000},
+    { name: 'Sydney', population: 4293000},
+    { name: 'Paris', population: 2244000},
+    { name: 'Beijing', population: 11510000}
+  ];
+
   const main = runtime.module();
   main.variable(observer()).define(["md"], function(md){return(
 md`# Entity-Relation Diagram using Force Layout
@@ -68,7 +76,7 @@ html`<button>Replay`
 
   const text = svg.append("g")
   .selectAll("text")
-  .data('TEST NAME AND SURNAME')
+  .data(cities)
   .join("text")
     .attr("x", d => d.x)
     .attr("y", d => d.y)
@@ -76,6 +84,9 @@ html`<button>Replay`
     .attr("height", d => (d.value +1)  * MAGNIFIER)
     .attr("font-family", "Verdana")
     .attr("font-size", 20)
+    .text(function(d) {
+      return d.name;
+    })
   
   node.transition()
       .delay((d, i) => Math.random() * 500)
