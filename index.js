@@ -26,11 +26,11 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
-  console.log('%%% nodes: ', nodes);
+  // console.log('%%% nodes: ', nodes);
   const links = populateLinks();
-  console.log('%%% links: ', links);
+  // console.log('%%% links: ', links);
   let zones = d3.rollup(nodes, zone, d => d.data.group);
-  console.log('%%% zones: ', zones);
+  // console.log('%%% zones: ', zones);
 
   const simulation = d3.forceSimulation(nodes)
       .force("x", d3.forceX(width / 2).strength(0.01))
@@ -77,7 +77,7 @@ html`<button>Replay`
         console.log("CLICKED!")
       }); 
 
-  const text = node.append("g")
+  const text = area.append("g")
   .selectAll("text")
   .data(nodes)
   .join("text")
@@ -187,7 +187,13 @@ function forceCollide() {
 }
 )});
 
-  main.variable(observer("pack")).define("pack", ["d3","width","height","data"], function(d3,width,height,data){return(
+  main.variable(observer("pack")).define("pack", ["d3","width","height","data"], function(d3,width,height,data){
+    console.log('variable(observer("pack")', d3.pack()
+    .size([width, height])
+    .padding(1)
+  (d3.hierarchy(data)
+    .sum(d => d.value)))
+    return(
 () => d3.pack()
     .size([width, height])
     .padding(1)
