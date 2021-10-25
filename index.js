@@ -77,7 +77,7 @@ html`<button>Replay`
         console.log("CLICKED!")
       }); 
 
-  const text = area.append("g")
+  const text = svg.append("g")
   .selectAll("text")
   .data(nodes)
   .join("text")
@@ -101,7 +101,7 @@ html`<button>Replay`
 
   simulation.on("tick", () => {
     zones = d3.rollup(nodes, zone, d => d.data.group);
-    area
+    svg
         .attr("x", d => {
           const {x1: x} = zones.get(d.data.children[0].group)
           return x - 5;
