@@ -77,7 +77,7 @@ html`<button>Replay`
         console.log("CLICKED!")
       }); 
 
-  // const text = svg.append("g")
+  // const text = area.append("g")
   // .selectAll("text")
   // .data(nodes)
   // .join("text")
@@ -99,31 +99,31 @@ html`<button>Replay`
         return t => d.r = i(t);
       });
 
-  simulation.on("tick", () => {
-    zones = d3.rollup(nodes, zone, d => d.data.group);
-    svg
-        .attr("x", d => {
-          const {x1: x} = zones.get(d.data.children[0].group)
-          return x - 5;
-    })
-        .attr("y", d => {
-          const {y1: y} = zones.get(d.data.children[0].group)
-          return y - 5;
-    })
-        .attr("width", d => {
-          const {x1, x2} = zones.get(d.data.children[0].group)
-          return 10 + x2 - x1;
-    })
-        .attr("height", d => {
-          const {y1, y2} = zones.get(d.data.children[0].group)
-          return 10 + y2 - y1;
-    });
-    node
-        .attr("x", d => d.x)
-        .attr("y", d => d.y);
-    link
-      .attr("d", d => `M ${d.source.x + (d.source.value +1) * (MAGNIFIER/2)} ${d.source.y + (d.source.value +1) * (MAGNIFIER/2)} H ${d.target.x + (d.target.value +1) * (MAGNIFIER/2)} V ${d.target.y + (d.target.value +1) * (MAGNIFIER/2)}`);
-  });
+  // simulation.on("tick", () => {
+  //   zones = d3.rollup(nodes, zone, d => d.data.group);
+  //   area
+  //       .attr("x", d => {
+  //         const {x1: x} = zones.get(d.data.children[0].group)
+  //         return x - 5;
+  //   })
+  //       .attr("y", d => {
+  //         const {y1: y} = zones.get(d.data.children[0].group)
+  //         return y - 5;
+  //   })
+  //       .attr("width", d => {
+  //         const {x1, x2} = zones.get(d.data.children[0].group)
+  //         return 10 + x2 - x1;
+  //   })
+  //       .attr("height", d => {
+  //         const {y1, y2} = zones.get(d.data.children[0].group)
+  //         return 10 + y2 - y1;
+  //   });
+  //   node
+  //       .attr("x", d => d.x)
+  //       .attr("y", d => d.y);
+  //   link
+  //     .attr("d", d => `M ${d.source.x + (d.source.value +1) * (MAGNIFIER/2)} ${d.source.y + (d.source.value +1) * (MAGNIFIER/2)} H ${d.target.x + (d.target.value +1) * (MAGNIFIER/2)} V ${d.target.y + (d.target.value +1) * (MAGNIFIER/2)}`);
+  // });
 
   invalidation.then(() => simulation.stop());
 
