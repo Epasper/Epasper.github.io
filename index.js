@@ -10,24 +10,56 @@ export default function define(runtime, observer) {
   ];
 
   const main = runtime.module();
-  main.variable(observer()).define(["md"], function(md){return(
+  main
+  .variable(observer())
+  .define(["md"], function(md) {
+    return(
 md`# Entity-Relation Diagram using Force Layout
 
 Based on the work of Mike Bostock on [Clustered Bubbles](https://observablehq.com/@d3/clustered-bubbles), this is a test on how to create an entity-relation diagram using d3 force-layout.
 
 To navigate faster in a loaded database, entities are sorted in color clusters.`
 )});
-  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function(html){return(
-html`<button>Replay`
-)});
-  main.variable(observer("replay")).define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
-  main.variable(observer("chart")).define("chart", ["replay","pack","populateLinks","d3","zone","width","height","forceCluster","forceCollide","DOM","MAGNIFIER","color","invalidation"], function(replay,pack,populateLinks,d3,zone,width,height,forceCluster,forceCollide,DOM,MAGNIFIER,color,invalidation)
+
+  main
+  .variable(observer("viewof replay"))
+  .define("viewof replay", ["html"], function(html){
+    return(
+      html`<button>Replay`
+    )});
+
+  main
+  .variable(observer("replay"))
+  .define("replay", ["Generators", "viewof replay"], (G, _) => {
+    G.input(_)
+  });
+
+  main
+  .variable(observer("chart"))
+  .define("chart", ["replay","pack","populateLinks","d3","zone","width","height","forceCluster","forceCollide","DOM","MAGNIFIER","color","invalidation"], function(replay,pack,populateLinks,d3,zone,width,height,forceCluster,forceCollide,DOM,MAGNIFIER,color,invalidation)
 {
   replay;
+  
+  populateLinks = () => {
+    links.length = 0;
+    for(let i=0; i < l; i++) {
+      const source = Math.floor(Math.random() * n);
+      let target = Math.floor(Math.random() * n);
+      while(source === target){
+        target = Math.floor(Math.random() * n);
+      }
+      links.push({
+        id: `${source}.${target}`,
+        source,
+        target
+      })  
+    }
+    return links
+  }
 
   const nodes = pack().leaves();
   console.log('%%% nodes: ', nodes);
-  const links = populateLinks();
+  const links = this.populateLinks();
   console.log('%%% links: ', links);
   let zones = d3.rollup(nodes, zone, d => d.data.group);
   console.log('%%% zones: ', zones);
@@ -128,9 +160,9 @@ html`<button>Replay`
   invalidation.then(() => simulation.stop());
 
   return svg.node();
-}
-);
-  main.variable(observer("forceCluster")).define("forceCluster", ["d3","centroid"], function(d3,centroid){return(
+});
+  main.variable(observer("forceCluster")).define("forceCluster", ["d3","centroid"], function(d3,centroid)
+  { return(
 function forceCluster() {
   const strength = 0.2;
   let nodes;
