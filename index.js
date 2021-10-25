@@ -216,7 +216,9 @@ function forceCollide() {
     .sum(d => d.value))
 )});
 
-  main.variable(observer("data")).define("data", ["d3","n","m"], function(d3,n,m,nodeSize){return(
+  main.variable(observer("data")).define("data", ["d3","n","m"], function(d3,n,m,nodeSize){
+    console.log('Dummy Data', dummyData);
+    return(
 {
   children: Array.from(
     d3.group(
