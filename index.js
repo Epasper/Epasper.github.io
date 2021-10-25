@@ -56,17 +56,17 @@ To navigate faster in a loaded database, entities are sorted in color clusters.`
 
   const svg = d3.select(DOM.svg(width, height));
    
-  // const area = svg.append("g")
-  //   .selectAll("rect")
-  //   .data(pack().children)
-  //   .join("rect")
-  //     .attr("x", d => d.x)
-  //     .attr("y", d => d.y)
-  //     .attr("width", d=> (d.value + 1) * MAGNIFIER)
-  //     .attr("height", d => (d.value + 1) * MAGNIFIER)
-  //     .attr("rx", 6)
-  //     .attr("fill", d => color(d.data.children[0].group))
-  //     .attr("opacity", 0.3)
+  const area = svg.append("g")
+    .selectAll("rect")
+    .data(pack().children)
+    .join("rect")
+      .attr("x", d => d.x)
+      .attr("y", d => d.y)
+      .attr("width", d=> (d.value + 1) * MAGNIFIER)
+      .attr("height", d => (d.value + 1) * MAGNIFIER)
+      .attr("rx", 6)
+      .attr("fill", d => color(d.data.children[0].group))
+      .attr("opacity", 0.3)
   
 
    const link = svg.append("g")
@@ -92,19 +92,19 @@ To navigate faster in a loaded database, entities are sorted in color clusters.`
         console.log("CLICKED!")
       }); 
 
-  // const text = area.append("g")
-  // .selectAll("text")
-  // .data(nodes)
-  // .join("text")
-  //   .attr("x", d => d.x)
-  //   .attr("y", d => d.y)
-  //   // .attr("width", d=> (d.value +1))
-  //   // .attr("height", d => (d.value +1))
-  //   .attr("font-family", "Verdana")
-  //   .attr("font-size", 20)
-  //   .text(function(d) {
-  //     return 'TEST TEXT';
-  //   })
+  const text = area.append("g")
+  .selectAll("text")
+  .data(nodes)
+  .join("text")
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    // .attr("width", d=> (d.value +1))
+    // .attr("height", d => (d.value +1))
+    .attr("font-family", "Verdana")
+    .attr("font-size", 20)
+    .text(function(d) {
+      return 'TEST TEXT';
+    })
   
   node.transition()
       .delay((d, i) => Math.random() * 500)
@@ -114,31 +114,31 @@ To navigate faster in a loaded database, entities are sorted in color clusters.`
         return t => d.r = i(t);
       });
 
-  // simulation.on("tick", () => {
-  //   zones = d3.rollup(nodes, zone, d => d.data.group);
-  //   area
-  //       .attr("x", d => {
-  //         const {x1: x} = zones.get(d.data.children[0].group)
-  //         return x - 5;
-  //   })
-  //       .attr("y", d => {
-  //         const {y1: y} = zones.get(d.data.children[0].group)
-  //         return y - 5;
-  //   })
-  //       .attr("width", d => {
-  //         const {x1, x2} = zones.get(d.data.children[0].group)
-  //         return 10 + x2 - x1;
-  //   })
-  //       .attr("height", d => {
-  //         const {y1, y2} = zones.get(d.data.children[0].group)
-  //         return 10 + y2 - y1;
-  //   });
-  //   node
-  //       .attr("x", d => d.x)
-  //       .attr("y", d => d.y);
-  //   link
-  //     .attr("d", d => `M ${d.source.x + (d.source.value +1) * (MAGNIFIER/2)} ${d.source.y + (d.source.value +1) * (MAGNIFIER/2)} H ${d.target.x + (d.target.value +1) * (MAGNIFIER/2)} V ${d.target.y + (d.target.value +1) * (MAGNIFIER/2)}`);
-  // });
+  simulation.on("tick", () => {
+    zones = d3.rollup(nodes, zone, d => d.data.group);
+    area
+        .attr("x", d => {
+          const {x1: x} = zones.get(d.data.children[0].group)
+          return x - 5;
+    })
+        .attr("y", d => {
+          const {y1: y} = zones.get(d.data.children[0].group)
+          return y - 5;
+    })
+        .attr("width", d => {
+          const {x1, x2} = zones.get(d.data.children[0].group)
+          return 10 + x2 - x1;
+    })
+        .attr("height", d => {
+          const {y1, y2} = zones.get(d.data.children[0].group)
+          return 10 + y2 - y1;
+    });
+    node
+        .attr("x", d => d.x)
+        .attr("y", d => d.y);
+    link
+      .attr("d", d => `M ${d.source.x + (d.source.value +1) * (MAGNIFIER/2)} ${d.source.y + (d.source.value +1) * (MAGNIFIER/2)} H ${d.target.x + (d.target.value +1) * (MAGNIFIER/2)} V ${d.target.y + (d.target.value +1) * (MAGNIFIER/2)}`);
+  });
 
   invalidation.then(() => simulation.stop());
 
