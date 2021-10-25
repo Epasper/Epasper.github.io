@@ -2,11 +2,11 @@
 export default function define(runtime, observer) {
 
   let dummyData = [
-    { name: 'London', population: 8674000},
-    { name: 'New York', population: 8406000},
-    { name: 'Sydney', population: 4293000},
-    { name: 'Paris', population: 2244000},
-    { name: 'Beijing', population: 11510000}
+    { name: 'Steven', surname: 'Steven', height:2, population: 8674000},
+    { name: 'Stanley', surname: 'Steven', height:2, population: 8406000},
+    { name: 'Jen', surname: 'Steven', height:2, population: 4293000},
+    { name: 'Paris', surname: 'Steven', height:2,  population: 2244000},
+    { name: 'Dave', surname: 'Steven', height:2, population: 11510000}
   ];
 
   const main = runtime.module();
@@ -41,17 +41,17 @@ html`<button>Replay`
 
   const svg = d3.select(DOM.svg(width, height));
    
-  const area = svg.append("g")
-    .selectAll("rect")
-    .data(pack().children)
-    .join("rect")
-      .attr("x", d => d.x)
-      .attr("y", d => d.y)
-      .attr("width", d=> (d.value + 1) * MAGNIFIER)
-      .attr("height", d => (d.value + 1) * MAGNIFIER)
-      .attr("rx", 6)
-      .attr("fill", d => color(d.data.children[0].group))
-      .attr("opacity", 0.3)
+  // const area = svg.append("g")
+  //   .selectAll("rect")
+  //   .data(pack().children)
+  //   .join("rect")
+  //     .attr("x", d => d.x)
+  //     .attr("y", d => d.y)
+  //     .attr("width", d=> (d.value + 1) * MAGNIFIER)
+  //     .attr("height", d => (d.value + 1) * MAGNIFIER)
+  //     .attr("rx", 6)
+  //     .attr("fill", d => color(d.data.children[0].group))
+  //     .attr("opacity", 0.3)
   
 
    const link = svg.append("g")
