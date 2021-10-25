@@ -39,27 +39,10 @@ To navigate faster in a loaded database, entities are sorted in color clusters.`
   .define("chart", ["replay","pack","populateLinks","d3","zone","width","height","forceCluster","forceCollide","DOM","MAGNIFIER","color","invalidation"], function(replay,pack,populateLinks,d3,zone,width,height,forceCluster,forceCollide,DOM,MAGNIFIER,color,invalidation)
 {
   replay;
-  
-  populateLinks = () => {
-    links.length = 0;
-    for(let i=0; i < l; i++) {
-      const source = Math.floor(Math.random() * n);
-      let target = Math.floor(Math.random() * n);
-      while(source === target){
-        target = Math.floor(Math.random() * n);
-      }
-      links.push({
-        id: `${source}.${target}`,
-        source,
-        target
-      })  
-    }
-    return links
-  }
 
   const nodes = pack().leaves();
   console.log('%%% nodes: ', nodes);
-  const links = this.populateLinks();
+  const links = populateLinks();
   console.log('%%% links: ', links);
   let zones = d3.rollup(nodes, zone, d => d.data.group);
   console.log('%%% zones: ', zones);
@@ -252,7 +235,9 @@ function forceCollide() {
   main.variable(observer("links")).define("links", function(){return(
 []
 )});
-  main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,numberOfLinks,n){return(
+  main.variable(observer("populateLinks")).define("populateLinks", ["links","l","n"], function(links,numberOfLinks,n)
+  {
+    return(
 () => {
   links.length = 0;
   console.log('numberOfLinks', numberOfLinks);
