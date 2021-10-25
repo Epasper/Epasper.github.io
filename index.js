@@ -26,11 +26,11 @@ html`<button>Replay`
   replay;
 
   const nodes = pack().leaves();
-  // console.log('%%% nodes: ', nodes);
+  console.log('%%% nodes: ', nodes);
   const links = populateLinks();
-  // console.log('%%% links: ', links);
+  console.log('%%% links: ', links);
   let zones = d3.rollup(nodes, zone, d => d.data.group);
-  // console.log('%%% zones: ', zones);
+  console.log('%%% zones: ', zones);
 
   const simulation = d3.forceSimulation(nodes)
       .force("x", d3.forceX(width / 2).strength(0.01))
