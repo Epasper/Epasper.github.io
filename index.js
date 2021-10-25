@@ -77,19 +77,19 @@ html`<button>Replay`
         console.log("CLICKED!")
       }); 
 
-  const text = svg.append("g")
-  .selectAll("text")
-  .data(nodes)
-  .join("text")
-    .attr("x", d => d.x)
-    .attr("y", d => d.y)
-    // .attr("width", d=> (d.value +1))
-    // .attr("height", d => (d.value +1))
-    .attr("font-family", "Verdana")
-    .attr("font-size", 20)
-    .text(function(d) {
-      return 'TEST TEXT';
-    })
+  // const text = svg.append("g")
+  // .selectAll("text")
+  // .data(nodes)
+  // .join("text")
+  //   .attr("x", d => d.x)
+  //   .attr("y", d => d.y)
+  //   // .attr("width", d=> (d.value +1))
+  //   // .attr("height", d => (d.value +1))
+  //   .attr("font-family", "Verdana")
+  //   .attr("font-size", 20)
+  //   .text(function(d) {
+  //     return 'TEST TEXT';
+  //   })
   
   node.transition()
       .delay((d, i) => Math.random() * 500)
